@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Tax Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="border-hidden md:border-solid border-2 border-black-400  lg:w-[50%] pt-10 m-3">
+        <div class="flex flex-col  md:flex-row justify-around lg:overflow-hidden ">
+            <div>
+                <select id="year" class="w-[340px] border-solid border-2 border-gray-400 rounded-md p-1 md:w-[200px] lg:w-[220px]">
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                </select>
+            </div>
+
+            <label for="monthsalary"></label>
+            <div class="mt-5 md:mt-0">
+                <input type="text" name="monthsalary"
+                    class="border-solid border-2 border-gray-400 rounded-md p-1 w-[340px] md:w-[200px] lg:w-[220px]"
+                    placeholder="Enter Your Monthly Salary" />
+            </div>
+
+            <div class="mt-5 md:mt-0 ">
+                <button class="btn text-white rounded-md p-1 w-[340px]
+                md:w-[200px] lg:w-[220px]">Calculate</button>
+            </div>
+        </div>
+
+        <div class="p-3">
+            <table class="mt-16 mb-8 mx-auto">
+                <tbody>
+
+                    <tr>
+                        <td class="p-1 border-solid border-black border-2 border-t-0 border-l-0 w-[19%] border-b-0">
+                            <p>Monthly Salary</p>
+                        </td>
+                        <td class="p-1 border-solid border-black border-2 border-t-0 w-[19%] border-b-0">
+                            <p>Monthly Tax</p>
+                        </td>
+                        <td class="p-1 border-solid border-black border-2 border-t-0 border-r-0 border-b-0 w-[19%]">
+                            <p>Salary After Tax</p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="p-1 border-solid border-black border-2 border-t-0 border-l-0 w-[19%]">
+                            <p id="Salary">0</p>
+                        </td>
+                        <td class="p-1 border-solid border-black border-2 border-t-0 w-[19%]">
+                            <p id="taxSalary">0</p>
+                        </td>
+                        <td class="p-1 border-solid border-black border-2 border-t-0 border-r-0 w-[19%]">
+                            <p id="AftertaxSalary">0</p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="p-1 border-solid border-black border-2 border-b-0 border-l-0">
+                            <p>Yearly Salary</p>
+                        </td>
+                        <td class="p-1 border-solid border-black border-2 border-b-0">
+                            <p>Yearly Tax</p>
+                        </td>
+                        <td class="p-1 border-solid border-black border-2 border-b-0 border-r-0">
+                            <p>Salary After Tax</p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="p-1 border-solid border-black border-2 border-t-0 border-b-0 border-l-0 w-[190px]">
+                            <p id="Yr_Sal">0</p>
+                        </td>
+                        <td class="p-1 border-solid border-black border-2 border-t-0 border-b-0 w-[190px]">
+                            <p id="Yr_tax">0</p>
+                        </td>
+                        <td class="p-1 border-solid border-black border-2 border-t-0 border-b-0 border-r-0 w-[190px]">
+                            <p id="Yr_Sal_AfterTax">0</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+<script>
+    const calculate = () => {
+
+        const monthsalary = document.querySelector('input[name=monthsalary]').value
+        document.querySelector("#Salary").innerHTML = monthsalary
+
+        const yr = document.getElementById('year').value
+        document.querySelector("#AftertaxSalary").innerHTML = monthsalary
+
+        if (yr == 2023) {
+            if (monthsalary > 50000) {
+                const tax = monthsalary * (0.25 / 100)
+                document.querySelector("#taxSalary").innerHTML = tax
+
+                document.querySelector("#AftertaxSalary").innerHTML = monthsalary - tax
+
+                const Yrs_Sal = monthsalary * 12
+                document.querySelector("#Yr_Sal").innerHTML = Yrs_Sal
+
+                const Yrs_Tax = tax * 12
+                document.querySelector("#Yr_tax").innerHTML = Yrs_Tax
+                document.querySelector("#Yr_Sal_AfterTax").innerHTML = Yrs_Sal - Yrs_Tax
+            }
+            else {
+                document.querySelector("#taxSalary").innerHTML = 0.00
+
+                document.querySelector("#Yr_Sal").innerHTML = monthsalary * 12
+
+                document.querySelector("#Yr_tax").innerHTML = 0.00
+
+                document.querySelector("#Yr_Sal_AfterTax").innerHTML = monthsalary * 12
+            }
+        }
+        else if (yr == 2022 || yr == 2021 || yr == 2020) {
+            if (monthsalary > 50000) {
+                const tax = monthsalary * (0.50 / 100)
+                document.querySelector("#taxSalary").innerHTML = tax
+
+                document.querySelector("#AftertaxSalary").innerHTML = monthsalary - tax
+
+                const Yrs_Sal = monthsalary * 12
+                document.querySelector("#Yr_Sal").innerHTML = Yrs_Sal
+
+                const Yrs_Tax = tax * 12
+                document.querySelector("#Yr_tax").innerHTML = Yrs_Tax
+                document.querySelector("#Yr_Sal_AfterTax").innerHTML = Yrs_Sal - Yrs_Tax
+            }
+            else {
+                document.querySelector("#taxSalary").innerHTML = 0.00
+
+                document.querySelector("#Yr_Sal").innerHTML = monthsalary * 12
+
+                document.querySelector("#Yr_tax").innerHTML = 0.00
+
+                document.querySelector("#Yr_Sal_AfterTax").innerHTML = monthsalary * 12
+            }
+        }
+        else if (yr == 2019) {
+            if (monthsalary > 35000) {
+                const tax = monthsalary * (0.8 / 100)
+                document.querySelector("#taxSalary").innerHTML = tax
+
+                document.querySelector("#AftertaxSalary").innerHTML = monthsalary - tax
+
+                const Yrs_Sal = monthsalary * 12
+                document.querySelector("#Yr_Sal").innerHTML = Yrs_Sal
+
+                const Yrs_Tax = tax * 12
+                document.querySelector("#Yr_tax").innerHTML = Yrs_Tax
+                document.querySelector("#Yr_Sal_AfterTax").innerHTML = Yrs_Sal - Yrs_Tax
+            }
+            else {
+                document.querySelector("#taxSalary").innerHTML = 0.00
+
+                document.querySelector("#Yr_Sal").innerHTML = monthsalary * 12
+
+                document.querySelector("#Yr_tax").innerHTML = 0.00
+
+                document.querySelector("#Yr_Sal_AfterTax").innerHTML = monthsalary * 12
+            }
+        }
+        else if (yr == 2018) {
+            if (monthsalary > 34000) {
+                const tax = monthsalary * (0.75 / 100)
+                document.querySelector("#taxSalary").innerHTML = tax
+
+                document.querySelector("#AftertaxSalary").innerHTML = monthsalary - tax
+
+                const Yrs_Sal = monthsalary * 12
+                document.querySelector("#Yr_Sal").innerHTML = Yrs_Sal
+
+                const Yrs_Tax = tax * 12
+                document.querySelector("#Yr_tax").innerHTML = Yrs_Tax
+                document.querySelector("#Yr_Sal_AfterTax").innerHTML = Yrs_Sal - Yrs_Tax
+            }
+            else {
+                document.querySelector("#taxSalary").innerHTML = 0.00
+
+                document.querySelector("#Yr_Sal").innerHTML = monthsalary * 12
+
+                document.querySelector("#Yr_tax").innerHTML = 0.00
+
+                document.querySelector("#Yr_Sal_AfterTax").innerHTML = monthsalary * 12
+            }
+        }
+    }
+    document.querySelector("button").addEventListener("click", calculate)
+</script>
+
+</html
